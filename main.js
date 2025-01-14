@@ -10,12 +10,16 @@ let size = [];
 let speed = [];
 let canvas = 0;
 const RANGE = 200;
+window.addEventListener("contextmenu", (e) => e.preventDefault());
+
+window.addEventListener("wheel", (e) => e.preventDefault(), { passive: false });
 
 function setup() {
   canvas = createCanvas(w, h, WEBGL);
+
   colorMode(HSL);
   noStroke();
-  for (let i = 1; i < 4; i++) {
+  for (let i = 0; i < 3; i++) {
     let curColorIndex = Math.round(random(0,COLORS.length-1));
     GRIDCOLORS[i] = COLORS[curColorIndex];
     COLORS.splice(curColorIndex, 1);
@@ -23,27 +27,29 @@ function setup() {
     angle[i] = random(-RANGE,RANGE);
     size[i] = random(20,50);
     speed[i] = random(0, 0.01);
+    displayColorInfo(GRIDCOLORS[i],i+1);
   }
+}
+
+
+function displayColorInfo(color,i) {
+  console.log(" La saturation de la couleur " + i + " est de " + saturation(color));
+  console.log(" La teinte de la couleur " + i + " est de " + hue(color));
+  console.log(" La luminosité de la couleur " + i + " est de " + lightness(color));
 }
 
 function draw() {
 background(COLORS[COLORS.length-1]);
   orbitControl(.2,.2,.2);
-  for (let i = 1; i < 4; i++) { 
+  for (let i = 0; i < 3; i++) { 
       push();
       fill(GRIDCOLORS[i]);
-      //square(100*column, 100*line, 100);
       translate(coords[i][0], coords[i][1], coords[i][2]);
-      translate(-0,0);
-      //rotateX(frameCount * 0.01+column);
-      //rotateY(frameCount * 0.01+line);
       rotateX(frameCount * speed[i]+angle[i]);
       rotateY(frameCount * speed[i]+angle[i]);
       //torus(80,15,80,80);
-      ellipsoid(size[i]*5, 200, 60, 100, 100);
+      ellipsoid(size[i]*10, size[i]*5, 60, 100, 100);
       pop();     
-      //rotateY(frameCount * 0.01);
-      //translate(-50,-50,0);
   } 
 }
 
@@ -51,5 +57,5 @@ window.onresize = function() {
   // assigns new values for width and height variables
   w = window.innerWidth;
   h = window.innerHeight;  
-  canvas.size(w,h);
+  resizeCanvas(w, h);
 }
