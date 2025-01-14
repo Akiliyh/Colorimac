@@ -4,10 +4,11 @@ let curColorIndex = 0;
 let curColor = 0;
 let coords = [0,0,0];
 let angle = [];
-let 
+let size = [];
+let speed = [];
 
 function setup() {
-  createCanvas(800, 800, WEBGL);
+  let cnv = createCanvas(800, 800, WEBGL);
   colorMode(HSL);
   noStroke();
   for (let i = 1; i < 5; i++) {
@@ -15,7 +16,12 @@ function setup() {
     gridColors[i] = colors[curColorIndex];
     coords[i] = [random(-50,50),random(-50,50),random(-50,50)];
     angle[i] = random(-50,50);
+    size[i] = random(20,50);
+    speed[i] = random(0, 0.01);
   }
+    setTimeout(() => {
+    save(cnv, 'myCanvas.png');
+    }, 1000);
 }
 
 function draw() {
@@ -29,12 +35,11 @@ background(100);
       translate(-0,0);
       //rotateX(frameCount * 0.01+column);
       //rotateY(frameCount * 0.01+line);
-      rotateX(frameCount * 0.01+angle[i]);
-      rotateY(frameCount * 0.01+angle[i]);
+      rotateX(frameCount * speed[i]+angle[i]);
+      rotateY(frameCount * speed[i]+angle[i]);
       //cone(30);
-      box(40);
-      
-      pop() ;     
+      plane(size[i]);
+      pop();     
       //rotateY(frameCount * 0.01);
       //translate(-50,-50,0);
   } 
