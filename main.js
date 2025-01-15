@@ -50,8 +50,8 @@ const acidicSketch = (p) => {
 
   function acidicColor() {
     let hue = p.random(360);
-    let saturation = 100;
-    let lightness = 50;
+    let saturation = p.random(90,100);
+    let lightness = p.random(40,60);
 
     return p.color(hue, saturation, lightness);
   }

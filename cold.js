@@ -49,12 +49,12 @@ const coldSketch = (p) => {
     }
   
     function acidicColor() {
-      let hue = p.random(360);
-      let saturation = 100;
-      let lightness = 50;
-  
-      return p.color(hue, saturation, lightness);
-    }
+        let hue = p.random(360);
+        let saturation = p.random(90,100);
+        let lightness = p.random(40,60);
+    
+        return p.color(hue, saturation, lightness);
+      }
   
     function generatePalette(numColors, colorFunction) {
       let palette = [];
