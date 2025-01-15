@@ -48,28 +48,6 @@ const acidicSketch = (p) => {
     }
   }
 
-  function acidicColor() {
-    let hue = p.random(360);
-    let saturation = 100;
-    let lightness = 50;
-
-    return p.color(hue, saturation, lightness);
-  }
-
-  function generatePalette(numColors, colorFunction) {
-    let palette = [];
-    for (let i = 0; i < numColors; i++) {
-      palette.push(colorFunction());
-    }
-    return palette;
-  }
-
-  function displayColorInfo(color, i) {
-    console.log("La saturation de la couleur " + i + " est de " +p.saturation(color));
-    console.log("La teinte de la couleur " + i + " est de " + p.hue(color));
-    console.log("La luminosité de la couleur " + i + " est de " + p.lightness(color));
-  }
-
   p.setup = function () {
     let canvas = p.createCanvas(w, h, p.WEBGL);
     canvas.id("acid");

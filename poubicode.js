@@ -44,9 +44,10 @@ function createBricks() {
             };
             bricks.push(newBrick);
         }
-        if (i >= row-1) {
-          //  console.log(i)
-            break;}
+        if (i >= row - 1) {
+            //  console.log(i)
+            break;
+        }
     }
 }
 createBricks();
@@ -173,3 +174,12 @@ function win() {
         text('You win', 180, 250);
     }
 }
+
+/////////////////////////////::::
+coldParameters = [random(140, 290), random(100), random(100)];
+coldPalette = generatePalette(4, coldParameters);
+GRIDCOLORS[i] = coldPalette[curColorIndex]
+coldPalette.splice(curColorIndex, 1);
+
+//draw
+background(coldPalette[Palette.length - 1]);
