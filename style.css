@@ -38,4 +38,23 @@ section div{
     flex-direction: row;
     width: 100vw;
     overflow-x: auto;
-  }
+}
+
+.fa {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, 0);
+    height: fit-content;
+    width: fit-content;
+    mix-blend-mode: difference;
+    color:white;
+    cursor: pointer;
+}
+
+.fa-angle-right {
+    right: 30px;
+}
+
+.fa-angle-left {
+    left: 30px;
+}

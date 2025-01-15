@@ -29,7 +29,7 @@ function generatePalette(numColors, colorFunction) {
     let objectColor = [];
     let contrast = false;
     let count = 0; 
-    
+
     while (!contrast) {
     contrast = true;
     palette = [];
@@ -69,3 +69,30 @@ function generatePalette(numColors, colorFunction) {
 }
     return palette;
 }
+
+function slide() {
+    
+}
+
+document.querySelectorAll('.fa-angle-left').forEach((faElement) => {
+    faElement.addEventListener('click', () => {
+        // Find the next section
+        const currentSection = faElement.parentElement.parentElement;
+        const nextSection = currentSection.previousElementSibling;
+
+        if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+document.querySelectorAll('.fa-angle-right').forEach((faElement) => {
+    faElement.addEventListener('click', () => {
+        const currentSection = faElement.parentElement.parentElement;
+        const nextSection = currentSection.nextElementSibling;
+
+        if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
