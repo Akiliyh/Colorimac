@@ -23,17 +23,21 @@ function init() {
   depth = [];
   speed = [];
   curColors = [...COLORS];
+  acidicParameters = [random(360), 100, 50];
+  acidicPalette = generatePalette(4,acidicParameters);
+  curColors = [...acidicPalette];
+  console.log(acidicPalette);
 
   for (let i = 0; i < 3; i++) {
     // let curColorIndex = Math.round(random(0, COLORS.length - 1));
-    acidicParameters = [random(360), 100, 50];
-    acidicPalette = generatePalette(4, acidicParameters);
+    // acidicParameters = [random(360), 100, 50];
+    // acidicPalette = generatePalette(4, acidicParameters);
 
-    let curColorIndex = Math.round(random(0, acidicPalette.length - 1));
-    GRIDCOLORS[i] = acidicPalette[curColorIndex]
+    let curColorIndex = Math.round(random(0, curColors.length - 1));
+    GRIDCOLORS[i] = curColors[curColorIndex];
     // GRIDCOLORS[i] = COLORS[curColorIndex];
     // COLORS.splice(curColorIndex, 1);
-    acidicPalette.splice(curColorIndex, 1);
+    curColors.splice(curColorIndex, 1);
 
     coords[i] = [random(-RANGE, RANGE), random(-RANGE, RANGE), random(-RANGE, RANGE)];
     angle[i] = random(-RANGE, RANGE);
@@ -58,13 +62,13 @@ function setup() {
   init();
 }
 
-function generatePalette(numIterations, parameters) {
+function generatePalette(numColors, parameters) {
   let palette = [];
-  let hue = parameters[0];
   let saturation = parameters[1];
   let lightness = parameters[2];
 
-  for (let i = 0; i < numIterations; i++) {
+  for (let i = 0; i < numColors; i++) {
+    let hue = random(360);
     palette.push(color(hue, saturation, lightness));
   }
 
@@ -79,7 +83,7 @@ function displayColorInfo(color, i) {
 
 function draw() {
   // background(COLORS[COLORS.length - 1]);
-  background(acidicPalette[acidicPalette.length - 1]);
+  background(curColors[curColors.length - 1]);
   orbitControl(.2,.2,.2);
   for (let i = 0; i < 3; i++) { 
       push();
