@@ -1,6 +1,12 @@
+@font-face {
+    font-family: PPMonument;
+    src: url(/font/PPMONUMENTEXTENDED-REGULAR.OTF);
+  }
+
 * {
     margin: 0;
     box-sizing: border-box;
+    font-family: "PPMonument";
 }
 
 html, body {
@@ -16,6 +22,8 @@ html, body {
     right: 0;
     mix-blend-mode: difference;
     color:white;
+    margin-top: 1rem;
+    font-size: 3rem;
 }
 
 section div{
