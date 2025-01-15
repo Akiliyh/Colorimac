@@ -3,6 +3,12 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
 .title {
     position: absolute;
     text-align: center;
@@ -11,3 +17,17 @@
     mix-blend-mode: difference;
     color:white;
 }
+
+section div{
+    min-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    overflow-x: auto;
+  }
