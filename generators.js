@@ -2,6 +2,7 @@ function displayColorInfo(color, i) {
     // console.log("La saturation de la couleur " + i + " est de " + color[0]);
     // console.log("La teinte de la couleur " + i + " est de " + color[1]);
     // console.log("La luminosité de la couleur " + i + " est de " + color[2]);
+    console.log("La teinte de la couleur " + i + " est de " + color[0]);
 }
 
 function acidicColor() {
@@ -13,28 +14,65 @@ function acidicColor() {
 }
 
 function coldColor() {
-    let hue = Math.random() * 360;
-    let saturation = randomIntFromInterval(90, 100);
-    let lightness = randomIntFromInterval(45, 55);
+    let hue = Math.random() * (270 - 90) + 90;
+    let saturation = Math.random() * (100 - 50) + 50;
+    let lightness = Math.random() * (70 - 30) + 30;
 
     return [hue, saturation, lightness];
 }
+
+// function warmColor() {
+
+//     let hue = 0;
+//     if (Math.random() < 0.5) {
+//         hue = Math.random() * 70;
+//     }
+//     else {
+//         hue = Math.random() * (360 - 250) + 250;
+//     }
+//     let saturation = Math.random() * (100 - 50) + 50;
+//     let lightness = Math.random() * (70 - 30) + 30;
+
+//     return [hue, saturation, lightness];
+// }
+
+// function wetColdColor() {
+//     let color1 = warmColor();
+//     let color2 = coldColor();
+//     let t = 0.3;
+
+//     let hue = color1[0] + t * (color2[0] - color1[0]);
+//     let saturation = color1[1] + t * (color2[1] - color1[1]);
+//     let lightness = color1[2] + t * (color2[2] - color1[2]);
+
+//     return [hue, saturation, lightness];
+// }
+
 
 function randomIntFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// function generatePalette(numColors, colorFunction) {
+//     let palette = [];
+//     for (let i = 0; i < numColors; i++) {
+//         palette.push(colorFunction());
+//     }
+//     return palette;
+// }
+
 function generatePalette(numColors, colorFunction) {
     let palette = [];
     let objectColor = [];
     let contrast = false;
-    let count = 0; 
+    let count = 0;
+    let callColorFunction;
 
     while (!contrast) {
-    contrast = true;
-    palette = [];
+        contrast = true;
+        palette = [];
 
-    for (let i = 0; i < numColors; i++) {
+        for (let i = 0; i < numColors; i++) {
 
             callColorFunction = colorFunction();
             objectColor = callColorFunction;
@@ -63,15 +101,15 @@ function generatePalette(numColors, colorFunction) {
                 }
             }
             console.log(palette);
-        
-        palette.push(objectColor);
+
+            palette.push(objectColor);
+        }
     }
-}
     return palette;
 }
 
 function slide() {
-    
+
 }
 
 document.querySelectorAll('.fa-angle-left').forEach((faElement) => {
