@@ -2,3 +2,10 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+.title {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
