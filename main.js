@@ -1,11 +1,13 @@
 var w = window.innerWidth;
-var h = window.innerHeight;  
-const COLORS = ["#808080","#00ff11", "#ff0000", "#00f7ff", "#0131B4", "#48392A"];
+var h = window.innerHeight;
+const COLORS = ["#808080", "#00ff11", "#ff0000", "#00f7ff", "#0131B4", "#48392A"];
 let curColors = COLORS;
 let GRIDCOLORS = [];
+let acidicPalette = [];
+let coldPalette = [];
 let curColorIndex = 0;
 let curColor = 0;
-let coords = [0,0,0];
+let coords = [0, 0, 0];
 let angle = [];
 let size = [];
 let depth = [];
@@ -23,26 +25,21 @@ function init() {
   depth = [];
   speed = [];
   curColors = [...COLORS];
-  acidicParameters = [random(360), 100, 50];
-  acidicPalette = generatePalette(4,acidicParameters);
+
+  // to change palette style change "acidicPalette" & "acidicColor"
+  acidicPalette = generatePalette(4, acidicColor);
   curColors = [...acidicPalette];
   console.log(acidicPalette);
 
   for (let i = 0; i < 3; i++) {
-    // let curColorIndex = Math.round(random(0, COLORS.length - 1));
-    // acidicParameters = [random(360), 100, 50];
-    // acidicPalette = generatePalette(4, acidicParameters);
-
     let curColorIndex = Math.round(random(0, curColors.length - 1));
     GRIDCOLORS[i] = curColors[curColorIndex];
-    // GRIDCOLORS[i] = COLORS[curColorIndex];
-    // COLORS.splice(curColorIndex, 1);
     curColors.splice(curColorIndex, 1);
 
     coords[i] = [random(-RANGE, RANGE), random(-RANGE, RANGE), random(-RANGE, RANGE)];
     angle[i] = random(-RANGE, RANGE);
     size[i] = random(20, 50);
-    
+
     let hueValue = hue(color(GRIDCOLORS[i]));
     // map rotation according to hue value -> warm moves fast and cold moves slow
     // % 360 cause 0 and 360 = same
@@ -62,14 +59,19 @@ function setup() {
   init();
 }
 
-function generatePalette(numColors, parameters) {
+function acidicColor() {
+  let hue = random(360);
+  let saturation = 100;
+  let lightness = 50;
+
+  return color(hue, saturation, lightness);
+}
+
+function generatePalette(numColors, colorFunction) {
   let palette = [];
-  let saturation = parameters[1];
-  let lightness = parameters[2];
 
   for (let i = 0; i < numColors; i++) {
-    let hue = random(360);
-    palette.push(color(hue, saturation, lightness));
+    palette.push(colorFunction());
   }
 
   return palette;
@@ -82,23 +84,22 @@ function displayColorInfo(color, i) {
 }
 
 function draw() {
-  // background(COLORS[COLORS.length - 1]);
   background(curColors[curColors.length - 1]);
-  orbitControl(.2,.2,.2);
-  for (let i = 0; i < 3; i++) { 
-      push();
-      fill(GRIDCOLORS[i]);
-      translate(coords[i][0], coords[i][1], coords[i][2]);
-      if (rotationEnabled) {
-        currentAngles[i] += speed[i];
+  orbitControl(.2, .2, .2);
+  for (let i = 0; i < 3; i++) {
+    push();
+    fill(GRIDCOLORS[i]);
+    translate(coords[i][0], coords[i][1], coords[i][2]);
+    if (rotationEnabled) {
+      currentAngles[i] += speed[i];
     }
 
     rotateX(currentAngles[i]);
     rotateY(currentAngles[i]);
-      //torus(80,15,80,80);
-      ellipsoid(size[i]*10, size[i]*5, depth[i], 100, 100);
-      pop();     
-  } 
+    //torus(80,15,80,80);
+    ellipsoid(size[i] * 10, size[i] * 5, depth[i], 100, 100);
+    pop();
+  }
 }
 
 window.addEventListener('keydown', (e) => {
@@ -111,9 +112,9 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-window.onresize = function() {
+window.onresize = function () {
   // assigns new values for width and height variables
   w = window.innerWidth;
-  h = window.innerHeight;  
+  h = window.innerHeight;
   resizeCanvas(w, h);
 }
