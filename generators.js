@@ -51,7 +51,7 @@ function wetColdColor() {
 function mildSugaryColor() {
     let hue = Math.random() * 360;
     let saturation = randomIntFromInterval(60, 80);
-    let lightness = randomIntFromInterval(80, 90);
+    let lightness = randomIntFromInterval(70, 90);
 
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
@@ -126,6 +126,10 @@ function displayColorPalette(palette) {
         const color = palette[i];
         const child = children[i];
         child.style.backgroundColor = `hsl(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
+        const span = child.querySelector('span');
+        if (span) {
+            span.textContent = `HSL(${Math.round(color.hue)}, ${Math.round(color.saturation)}%, ${Math.round(color.lightness)}%)`;
+        }
     }
 }
 
@@ -152,3 +156,20 @@ document.querySelectorAll('.fa-angle-right').forEach((faElement) => {
         }
     });
 });
+
+// Function to play the audio
+function playAudio() {
+    const audio = new Audio('/music/Raindrop_Reverie.mp3');
+    audio.play();
+}
+
+function handleUserInteraction() {
+    playAudio();
+    document.removeEventListener('click', handleUserInteraction);
+    document.removeEventListener('keydown', handleUserInteraction);
+}
+
+// if interaction then play the audio
+document.addEventListener('click', handleUserInteraction);
+document.addEventListener('keydown', handleUserInteraction);
+
