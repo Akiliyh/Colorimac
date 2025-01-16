@@ -47,7 +47,7 @@ const acidicSketch = (p) => {
 
       coords[i] = [p.random(-RANGE, RANGE), p.random(-RANGE, RANGE), p.random(-RANGE, RANGE)];
       angle[i] = p.random(-RANGE, RANGE);
-      size[i] = p.random(20, 50);
+      size[i] = p.random(30, 50);
       depth[i] = p.map(size[i] * p.saturation(GRIDCOLORS[i]), 0, 500, 0, size[i]);
 
       let hueValue = p.hue(p.color(GRIDCOLORS[i]));

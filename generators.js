@@ -33,7 +33,7 @@ function warmColor() {
     let saturation = Math.random() * (100 - 50) + 50;
     let lightness = Math.random() * (70 - 40) + 40;
 
-    return { hue: hue, saturation: saturation, lightness: lightness };;
+    return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
 function wetColdColor() {
@@ -45,7 +45,15 @@ function wetColdColor() {
     let s = color1.saturation + t * (color2.saturation - color1.saturation);
     let l = color1.lightness + t * (color2.lightness - color1.lightness);
 
-    return { hue: h, saturation: s, lightness: l };;
+    return { hue: h, saturation: s, lightness: l };
+}
+
+function mildSugaryColor() {
+    let hue = Math.random() * 360;
+    let saturation = randomIntFromInterval(90, 100);
+    let lightness = randomIntFromInterval(45, 55);
+
+    return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
 
