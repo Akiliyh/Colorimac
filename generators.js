@@ -76,7 +76,7 @@ function generatePalette(numColors, colorFunction, minHueContrast) {
                 console.log(objectColor);
                 console.log("palette", minHueContrast)
                 if (
-                    (Math.abs(palette[k][0] - objectColor[0]) < minHueContrast) /*||
+                    (Math.abs(palette[k].hue - objectColor.hue) < minHueContrast) /*||
                     (Math.abs(palette[k][1] - objectColor[1]) < 45) ||
                     (Math.abs(palette[k][2] - objectColor[2]) < 30)*/) {
                     // console.log(Math.abs(palette[k][0] - objectColor[0]) < 20);
