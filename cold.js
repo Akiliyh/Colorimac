@@ -1,8 +1,7 @@
 const coldSketch = (p) => {
   let w = window.innerWidth;
   let h = window.innerHeight;
-  const COLORS = ["#808080", "#00ff11", "#ff0000", "#00f7ff", "#0131B4", "#48392A"];
-  let curColors = COLORS;
+  let curColors = [];
   let GRIDCOLORS = [];
   let coldPalette = [];
   let coords = [];
@@ -21,7 +20,7 @@ const coldSketch = (p) => {
     size = [];
     depth = [];
     speed = [];
-    curColors = [...COLORS];
+    curColors = [];
 
     // to change palette style change "coldPalette" & "coldColor"
     coldPalette = generatePalette(4, coldColor, 25);

@@ -1,8 +1,7 @@
 const acidicSketch = (p) => {
   let w = window.innerWidth;
   let h = window.innerHeight;
-  const COLORS = ["#808080", "#00ff11", "#ff0000", "#00f7ff", "#0131B4", "#48392A"];
-  let curColors = COLORS;
+  let curColors = [];
   let GRIDCOLORS = [];
   let acidicPalette = [];
   let coords = [];
@@ -21,7 +20,7 @@ const acidicSketch = (p) => {
     size = [];
     depth = [];
     speed = [];
-    curColors = [...COLORS];
+    curColors = [];
 
     // to change palette style change "acidicPalette" & "acidicColor"
     acidicPalette = generatePalette(4, acidicColor, 50);
