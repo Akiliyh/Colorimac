@@ -78,11 +78,17 @@ const acidicSketch = (p) => {
   };
 
   p.keyPressed = function () {
+    let container = document.querySelector('.container');
+    let paletteContainer = document.getElementById('acid-container');
+    /* global pause */
     if (p.key === " ") {
       rotationEnabled = !rotationEnabled;
-      /* If user enters R then restart */
-    } else if (p.key === "r" || p.key === "R") {
-      init();
+    }
+    /* only restart when in focus */
+    if (container.scrollLeft + window.innerWidth > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+      if (p.key === "r" || p.key === "R") {
+        init();
+      }
     }
   };
 

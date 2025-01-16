@@ -78,13 +78,19 @@ const wetColdSketch = (p) => {
     };
   
     p.keyPressed = function () {
-      if (p.key === " ") {
-        rotationEnabled = !rotationEnabled;
-        /* If user enters R then restart */
-      } else if (p.key === "r" || p.key === "R") {
-        init();
-      }
-    };
+        let container = document.querySelector('.container');
+        let paletteContainer = document.getElementById('wetCold-container');
+        /* global pause */
+        if (p.key === " ") {
+          rotationEnabled = !rotationEnabled;
+        }
+        /* only restart when in focus */
+        if (container.scrollLeft + window.innerWidth > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+          if (p.key === "r" || p.key === "R") {
+            init();
+          }
+        }
+      };
   
     p.windowResized = function () {
       // assigns new values for width and height variables

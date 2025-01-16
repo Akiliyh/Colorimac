@@ -80,16 +80,17 @@ const warmSketch = (p) => {
     p.keyPressed = function () {
         let container = document.querySelector('.container');
         let paletteContainer = document.getElementById('warm-container');
-        console.log(paletteContainer.offsetLeft);
-        console.log(window.innerWidth);
-      if (p.key === " ") {
-        console.log(container.scrollLeft);
-        rotationEnabled = !rotationEnabled;
-        /* If user enters R then restart */
-      } else if (p.key === "r" || p.key === "R") {
-        init();
-      }
-    };
+        /* global pause */
+        if (p.key === " ") {
+          rotationEnabled = !rotationEnabled;
+        }
+        /* only restart when in focus */
+        if (container.scrollLeft + window.innerWidth > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+          if (p.key === "r" || p.key === "R") {
+            init();
+          }
+        }
+      };
   
     p.windowResized = function () {
       // assigns new values for width and height variables
