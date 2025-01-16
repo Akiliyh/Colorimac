@@ -1,10 +1,18 @@
 const coldSketch = (p) => {
   let parent = document.getElementById('cold-container');
   let container = document.querySelector('.container');
+
+  // we set the canva size based on the parent's size
   let stylesParent = window.getComputedStyle(parent);
-  let padding = parseFloat(stylesParent.padding);
-  let w = parent.clientWidth - padding*2;
-  let h = parent.clientHeight - padding*2;
+
+  let paddingLeft = parseFloat(stylesParent.paddingLeft);
+  let paddingRight = parseFloat(stylesParent.paddingRight);
+  let paddingTop = parseFloat(stylesParent.paddingTop);
+  let paddingBottom = parseFloat(stylesParent.paddingBottom);
+
+  let w = parent.clientWidth - (paddingLeft + paddingRight);
+  let h = parent.clientHeight - (paddingTop + paddingBottom) * 2;
+
   let curColors = [];
   let GRIDCOLORS = [];
   let coldPalette = [];
@@ -108,7 +116,7 @@ const coldSketch = (p) => {
   p.onScroll = function () {
     let paletteContainer = document.getElementById('cold-container');
     
-    if (container.scrollLeft+1 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+    if (container.scrollLeft+window.innerWidth/2 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
       displayColorPalette(coldPalette);
     }
   }
@@ -116,9 +124,16 @@ const coldSketch = (p) => {
   p.windowResized = function () {
     let parent = document.getElementById('cold-container');
     // assigns new values for width and height variables
-    console.log(parent);
-    w = parent.clientWidth - padding*2;
-    h = parent.clientHeight - padding*2;
+    // we set the canvas size based on the parent's size
+    let stylesParent = window.getComputedStyle(parent);
+
+    let paddingLeft = parseFloat(stylesParent.paddingLeft);
+    let paddingRight = parseFloat(stylesParent.paddingRight);
+    let paddingTop = parseFloat(stylesParent.paddingTop);
+    let paddingBottom = parseFloat(stylesParent.paddingBottom);
+
+    let w = parent.clientWidth - (paddingLeft + paddingRight);
+    let h = parent.clientHeight - (paddingTop + paddingBottom) * 2;
     p.resizeCanvas(w, h);
   };
 };

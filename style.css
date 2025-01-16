@@ -31,7 +31,7 @@ section div{
     width: 100vw;
     height: 100vh;
     position: relative;
-    padding: 100px;
+    padding: 50px 100px;
 }
 
 .container {
@@ -41,6 +41,8 @@ section div{
     overflow-x: auto;
     overflow-y: hidden;
 }
+
+/* FA ICON */
 
 .fa {
     position: absolute;
@@ -69,9 +71,11 @@ section div{
   margin-top: 30px;
 }
 
+/* FOOTER */
+
 .footer {
     position: absolute;
-    bottom: 20px;
+    bottom: 45px;
     width: 100%;
     padding: 0 100px;
 }
@@ -79,6 +83,15 @@ section div{
 .footer .controls {
     display: flex;
     gap: 15px;
+}
+
+.footer .project-name {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer footer{
@@ -106,6 +119,28 @@ section div{
 .footer .colors div {
     height: 100%;
   width: 100%;
+  transition: .2s ease;
+  padding: 5px;
+  font-size: .5rem;
+  overflow-x: hidden;
+  display: flex;
+}
+
+.footer .colors div span {
+  margin-top: auto;
+  margin-bottom: auto;
+  color: transparent;
+  mix-blend-mode: difference;
+  transition: .5s ease;
+}
+
+.footer .colors div:hover {
+    height: 100%;
+  width: 200%;
+}
+
+.footer .colors div:hover span {
+  color: white;
 }
 
 .footer .color1 {
@@ -122,4 +157,31 @@ section div{
 
 .footer .color4 {
     background-color: rgb(58, 41, 41);
+}
+
+@media (max-width: 1250px) { 
+    .footer .controls {
+        display: none;
+    }
+
+    .footer .project-name {
+        position: static;
+        margin: 0;
+    }
+
+    .footer .colors {
+        width: 25vw;
+    }
+}
+
+@media (max-width: 750px) { 
+
+    .footer .project-name {
+        display: none;
+    }
+
+    .footer .colors {
+        width: 100%;
+        height: 50px;
+    }
 }
