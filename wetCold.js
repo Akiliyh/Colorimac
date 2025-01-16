@@ -27,7 +27,10 @@ const wetColdSketch = (p) => {
 
     // to change palette style change "coldPalette" & "coldColor"
     wetColdPalette = generatePalette(4, wetColdColor, 50);
-    curColors = [...wetColdPalette];
+    // curColors = [...wetColdPalette];
+    for (let i = 0; i < wetColdPalette.length; i++) {
+      curColors.push(p.color(wetColdPalette[i].hue, wetColdPalette[i].saturation, wetColdPalette[i].lightness));
+    };
     console.log(wetColdPalette);
 
     for (let i = 0; i < 3; i++) {
