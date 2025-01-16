@@ -72,9 +72,9 @@ function generatePalette(numColors, colorFunction, minHueContrast) {
 
             for (let k = 0; k < i; k++) {
                 count += 1;
-                console.log(palette[k]);
-                console.log(objectColor);
-                console.log("palette", minHueContrast)
+                // console.log(palette[k]);
+                // console.log(objectColor);
+                // console.log("palette", minHueContrast)
                 if (
                     (Math.abs(palette[k].hue - objectColor.hue) < minHueContrast) /*||
                     (Math.abs(palette[k][1] - objectColor[1]) < 45) ||
@@ -90,15 +90,27 @@ function generatePalette(numColors, colorFunction, minHueContrast) {
                     contrast = false;
                     break;
                 } else {
-                    console.log("Le contraste est good");
+                    // console.log("Le contraste est good");
                 }
             }
-            console.log(palette);
+            // console.log(palette);
 
             palette.push(objectColor);
         }
     }
     return palette;
+}
+
+function displayColorPalette(palette) {
+    const colorsContainer = document.querySelector('.colors');
+    const children = colorsContainer.children;
+
+    // Loop through each child of .colors
+    for (let i = 0; i < children.length; i++) {
+        const color = palette[i];
+        const child = children[i];
+        child.style.backgroundColor = `hsl(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
+    }
 }
 
 document.querySelectorAll('.fa-angle-left').forEach((faElement) => {
@@ -115,6 +127,7 @@ document.querySelectorAll('.fa-angle-left').forEach((faElement) => {
 
 document.querySelectorAll('.fa-angle-right').forEach((faElement) => {
     faElement.addEventListener('click', () => {
+        // Find the next section
         const currentSection = faElement.parentElement.parentElement;
         const nextSection = currentSection.nextElementSibling;
 

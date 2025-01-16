@@ -1,5 +1,6 @@
 const acidicSketch = (p) => {
   let parent = document.getElementById('acid-container');
+  let container = document.querySelector('.container');
   let stylesParent = window.getComputedStyle(parent);
   let padding = parseFloat(stylesParent.padding);
   let w = parent.clientWidth - padding * 2;
@@ -25,6 +26,8 @@ const acidicSketch = (p) => {
     speed = [];
     curColors = [];
 
+    container.addEventListener('scroll', p.onScroll);
+
     // to change palette style change "acidicPalette" & "acidicColor"
     acidicPalette = generatePalette(4, acidicColor, 50);
     // curColors = [...acidicPalette];
@@ -32,6 +35,10 @@ const acidicSketch = (p) => {
       curColors.push(p.color(acidicPalette[i].hue, acidicPalette[i].saturation, acidicPalette[i].lightness));
     };
     console.log(acidicPalette);
+    // 
+    if (container.scrollLeft+1 > parent.offsetLeft && container.scrollLeft < parent.offsetLeft + window.innerWidth) {
+      displayColorPalette(acidicPalette);
+    }
 
     for (let i = 0; i < 3; i++) {
       let curColorIndex = Math.round(p.random(0, curColors.length - 1));
@@ -83,7 +90,6 @@ const acidicSketch = (p) => {
   };
 
   p.keyPressed = function () {
-    let container = document.querySelector('.container');
     let paletteContainer = document.getElementById('acid-container');
     /* global pause */
     if (p.key === " ") {
@@ -96,6 +102,14 @@ const acidicSketch = (p) => {
       }
     }
   };
+
+  p.onScroll = function () {
+    let paletteContainer = document.getElementById('acid-container');
+    
+    if (container.scrollLeft+1 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+      displayColorPalette(acidicPalette);
+    }
+  }
 
   p.windowResized = function () {
     let parent = document.getElementById('acid-container');

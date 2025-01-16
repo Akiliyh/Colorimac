@@ -1,5 +1,6 @@
 const warmSketch = (p) => {
-    let parent = document.getElementById('warm-container');
+  let parent = document.getElementById('warm-container');
+  let container = document.querySelector('.container');
   let stylesParent = window.getComputedStyle(parent);
   let padding = parseFloat(stylesParent.padding);
   let w = parent.clientWidth - padding*2;
@@ -25,6 +26,8 @@ const warmSketch = (p) => {
     speed = [];
     curColors = [];
 
+    container.addEventListener('scroll', p.onScroll);
+
     // to change palette style change "coldPalette" & "coldColor"
     warmPalette = generatePalette(4, warmColor, 25);
     // curColors = [...warmPalette];
@@ -34,6 +37,9 @@ const warmSketch = (p) => {
     };
 
     console.log(warmPalette);
+    if (container.scrollLeft+1 > parent.offsetLeft && container.scrollLeft < parent.offsetLeft + window.innerWidth) {
+      displayColorPalette(warmPalette);
+    }
 
     for (let i = 0; i < 3; i++) {
       let curColorIndex = Math.round(p.random(0, curColors.length - 1));
@@ -98,6 +104,14 @@ const warmSketch = (p) => {
       }
     }
   };
+
+  p.onScroll = function () {
+    let paletteContainer = document.getElementById('warm-container');
+    
+    if (container.scrollLeft+1 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+      displayColorPalette(warmPalette);
+    }
+  }
 
   p.windowResized = function () {
     let parent = document.getElementById('warm-container');
