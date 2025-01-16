@@ -50,8 +50,16 @@ function wetColdColor() {
 
 function mildSugaryColor() {
     let hue = Math.random() * 360;
-    let saturation = randomIntFromInterval(90, 100);
-    let lightness = randomIntFromInterval(45, 55);
+    let saturation = randomIntFromInterval(60, 80);
+    let lightness = randomIntFromInterval(80, 90);
+
+    return { hue: hue, saturation: saturation, lightness: lightness };
+}
+
+function coldSilentColor() {
+    let hue = randomIntFromInterval(170, 250);
+    let saturation = randomIntFromInterval(10, 40);
+    let lightness = randomIntFromInterval(20, 80);
 
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
