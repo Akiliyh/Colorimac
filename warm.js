@@ -24,7 +24,7 @@ const warmSketch = (p) => {
       curColors = [...COLORS];
   
       // to change palette style change "coldPalette" & "coldColor"
-      warmPalette = generatePalette(4, warmColor);
+      warmPalette = generatePalette(4, warmColor, 25);
       curColors = [...warmPalette];
       console.log(warmPalette);
   
@@ -78,7 +78,12 @@ const warmSketch = (p) => {
     };
   
     p.keyPressed = function () {
+        let container = document.querySelector('.container');
+        let paletteContainer = document.getElementById('warm-container');
+        console.log(paletteContainer.offsetLeft);
+        console.log(window.innerWidth);
       if (p.key === " ") {
+        console.log(container.scrollLeft);
         rotationEnabled = !rotationEnabled;
         /* If user enters R then restart */
       } else if (p.key === "r" || p.key === "R") {

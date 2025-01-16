@@ -38,6 +38,7 @@ section div{
     flex-direction: row;
     width: 100vw;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .fa {

@@ -24,7 +24,7 @@ const coldSketch = (p) => {
     curColors = [...COLORS];
 
     // to change palette style change "coldPalette" & "coldColor"
-    coldPalette = generatePalette(4, coldColor);
+    coldPalette = generatePalette(4, coldColor, 25);
     curColors = [...coldPalette];
     console.log(coldPalette);
 

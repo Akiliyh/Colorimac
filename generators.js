@@ -25,13 +25,13 @@ function warmColor() {
 
     let hue = 0;
     if (Math.random() < 0.5) {
-        hue = Math.random() * 70;
+        hue = Math.random() * 50;
     }
     else {
-        hue = Math.random() * (360 - 300) + 300;
+        hue = Math.random() * (360 - 320) + 320;
     }
     let saturation = Math.random() * (100 - 50) + 50;
-    let lightness = Math.random() * (70 - 30) + 30;
+    let lightness = Math.random() * (70 - 40) + 40;
 
     return [hue, saturation, lightness];
 }
@@ -53,7 +53,7 @@ function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generatePalette(numColors, colorFunction) {
+function generatePalette(numColors, colorFunction, minHueContrast) {
     let palette = [];
     let objectColor = [];
     let contrast = false;
@@ -75,7 +75,7 @@ function generatePalette(numColors, colorFunction) {
                 console.log(palette[k]);
                 console.log(objectColor);
                 if (
-                    (Math.abs(palette[k][0] - objectColor[0]) < 50) /*||
+                    (Math.abs(palette[k][0] - objectColor[0]) < minHueContrast) /*||
                     (Math.abs(palette[k][1] - objectColor[1]) < 45) ||
                     (Math.abs(palette[k][2] - objectColor[2]) < 30)*/) {
                     // console.log(Math.abs(palette[k][0] - objectColor[0]) < 20);
@@ -98,10 +98,6 @@ function generatePalette(numColors, colorFunction) {
         }
     }
     return palette;
-}
-
-function slide() {
-
 }
 
 document.querySelectorAll('.fa-angle-left').forEach((faElement) => {

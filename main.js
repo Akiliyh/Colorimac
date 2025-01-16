@@ -24,7 +24,7 @@ const acidicSketch = (p) => {
     curColors = [...COLORS];
 
     // to change palette style change "acidicPalette" & "acidicColor"
-    acidicPalette = generatePalette(4, acidicColor);
+    acidicPalette = generatePalette(4, acidicColor, 50);
     curColors = [...acidicPalette];
     console.log(acidicPalette);
 
