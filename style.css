@@ -68,3 +68,58 @@ section div{
   text-align: center;
   margin-top: 30px;
 }
+
+.footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 100px;
+}
+
+.footer .controls {
+    display: flex;
+    gap: 15px;
+}
+
+.footer footer{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.footer .controls div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: .6rem;
+}
+
+.footer .controls img {
+    height: 25px;
+}
+
+.footer .colors {
+    width: 15vw;
+    display: flex;
+}
+
+.footer .colors div {
+    height: 100%;
+  width: 100%;
+}
+
+.footer .color1 {
+    background-color: rgb(189, 180, 180);
+}
+
+.footer .color2 {
+    background-color: rgb(84, 47, 47);
+}
+
+.footer .color3 {
+    background-color: rgb(125, 87, 87);
+}
+
+.footer .color4 {
+    background-color: rgb(58, 41, 41);
+}
