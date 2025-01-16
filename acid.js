@@ -2,8 +2,8 @@ const acidicSketch = (p) => {
   let parent = document.getElementById('acid-container');
   let stylesParent = window.getComputedStyle(parent);
   let padding = parseFloat(stylesParent.padding);
-  let w = parent.clientWidth - padding*2;
-  let h = parent.clientHeight - padding*2;
+  let w = parent.clientWidth - padding * 2;
+  let h = parent.clientHeight - padding * 2;
   let curColors = [];
   let GRIDCOLORS = [];
   let acidicPalette = [];
@@ -27,7 +27,10 @@ const acidicSketch = (p) => {
 
     // to change palette style change "acidicPalette" & "acidicColor"
     acidicPalette = generatePalette(4, acidicColor, 50);
-    curColors = [...acidicPalette];
+    // curColors = [...acidicPalette];
+    for (let i = 0; i < acidicPalette.length; i++) {
+      curColors.push(p.color(acidicPalette[i].hue, acidicPalette[i].saturation, acidicPalette[i].lightness));
+    };
     console.log(acidicPalette);
 
     for (let i = 0; i < 3; i++) {
@@ -98,8 +101,8 @@ const acidicSketch = (p) => {
     let parent = document.getElementById('acid-container');
     // assigns new values for width and height variables
     console.log(parent);
-    w = parent.clientWidth - padding*2;
-    h = parent.clientHeight - padding*2;
+    w = parent.clientWidth - padding * 2;
+    h = parent.clientHeight - padding * 2;
     p.resizeCanvas(w, h);
   };
 };

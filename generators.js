@@ -2,7 +2,7 @@ function displayColorInfo(color, i) {
     // console.log("La saturation de la couleur " + i + " est de " + color[0]);
     // console.log("La teinte de la couleur " + i + " est de " + color[1]);
     // console.log("La luminosité de la couleur " + i + " est de " + color[2]);
-    console.log("La teinte de la couleur " + i + " est de " + color[0]);
+    console.log("La teinte de la couleur " + i + " est de " + color.hue);
 }
 
 function acidicColor() {
@@ -10,7 +10,7 @@ function acidicColor() {
     let saturation = randomIntFromInterval(90, 100);
     let lightness = randomIntFromInterval(45, 55);
 
-    return [hue, saturation, lightness];
+    return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
 function coldColor() {
@@ -18,7 +18,7 @@ function coldColor() {
     let saturation = Math.random() * (100 - 50) + 50;
     let lightness = Math.random() * (70 - 30) + 30;
 
-    return [hue, saturation, lightness];
+    return { hue: hue, saturation: saturation, lightness: lightness };;
 }
 
 function warmColor() {
@@ -33,7 +33,7 @@ function warmColor() {
     let saturation = Math.random() * (100 - 50) + 50;
     let lightness = Math.random() * (70 - 40) + 40;
 
-    return [hue, saturation, lightness];
+    return { hue: hue, saturation: saturation, lightness: lightness };;
 }
 
 function wetColdColor() {
@@ -41,11 +41,11 @@ function wetColdColor() {
     let color2 = coldColor();
     let t = 0.3;
 
-    let hue = color1[0] + t * (color2[0] - color1[0]);
-    let saturation = color1[1] + t * (color2[1] - color1[1]);
-    let lightness = color1[2] + t * (color2[2] - color1[2]);
+    let h = color1.hue + t * (color2.hue - color1.hue);
+    let s = color1.saturation + t * (color2.saturation - color1.saturation);
+    let l = color1.lightness + t * (color2.lightness - color1.lightness);
 
-    return [hue, saturation, lightness];
+    return { hue: h, saturation: s, lightness: l };;
 }
 
 
@@ -74,6 +74,7 @@ function generatePalette(numColors, colorFunction, minHueContrast) {
                 count += 1;
                 console.log(palette[k]);
                 console.log(objectColor);
+                console.log("palette", minHueContrast)
                 if (
                     (Math.abs(palette[k][0] - objectColor[0]) < minHueContrast) /*||
                     (Math.abs(palette[k][1] - objectColor[1]) < 45) ||
