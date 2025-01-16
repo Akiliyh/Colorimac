@@ -21,45 +21,37 @@ function coldColor() {
     return [hue, saturation, lightness];
 }
 
-// function warmColor() {
+function warmColor() {
 
-//     let hue = 0;
-//     if (Math.random() < 0.5) {
-//         hue = Math.random() * 70;
-//     }
-//     else {
-//         hue = Math.random() * (360 - 250) + 250;
-//     }
-//     let saturation = Math.random() * (100 - 50) + 50;
-//     let lightness = Math.random() * (70 - 30) + 30;
+    let hue = 0;
+    if (Math.random() < 0.5) {
+        hue = Math.random() * 70;
+    }
+    else {
+        hue = Math.random() * (360 - 300) + 300;
+    }
+    let saturation = Math.random() * (100 - 50) + 50;
+    let lightness = Math.random() * (70 - 30) + 30;
 
-//     return [hue, saturation, lightness];
-// }
+    return [hue, saturation, lightness];
+}
 
-// function wetColdColor() {
-//     let color1 = warmColor();
-//     let color2 = coldColor();
-//     let t = 0.3;
+function wetColdColor() {
+    let color1 = warmColor();
+    let color2 = coldColor();
+    let t = 0.3;
 
-//     let hue = color1[0] + t * (color2[0] - color1[0]);
-//     let saturation = color1[1] + t * (color2[1] - color1[1]);
-//     let lightness = color1[2] + t * (color2[2] - color1[2]);
+    let hue = color1[0] + t * (color2[0] - color1[0]);
+    let saturation = color1[1] + t * (color2[1] - color1[1]);
+    let lightness = color1[2] + t * (color2[2] - color1[2]);
 
-//     return [hue, saturation, lightness];
-// }
+    return [hue, saturation, lightness];
+}
 
 
 function randomIntFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
-// function generatePalette(numColors, colorFunction) {
-//     let palette = [];
-//     for (let i = 0; i < numColors; i++) {
-//         palette.push(colorFunction());
-//     }
-//     return palette;
-// }
 
 function generatePalette(numColors, colorFunction) {
     let palette = [];
