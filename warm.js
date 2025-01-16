@@ -1,6 +1,9 @@
 const warmSketch = (p) => {
-  let w = window.innerWidth;
-  let h = window.innerHeight;
+    let parent = document.getElementById('warm-container');
+  let stylesParent = window.getComputedStyle(parent);
+  let padding = parseFloat(stylesParent.padding);
+  let w = parent.clientWidth - padding*2;
+  let h = parent.clientHeight - padding*2;
   let curColors = [];
   let GRIDCOLORS = [];
   let warmPalette = [];
@@ -92,9 +95,11 @@ const warmSketch = (p) => {
   };
 
   p.windowResized = function () {
+    let parent = document.getElementById('warm-container');
     // assigns new values for width and height variables
-    w = window.innerWidth;
-    h = window.innerHeight;
+    console.log(parent);
+    w = parent.clientWidth - padding*2;
+    h = parent.clientHeight - padding*2;
     p.resizeCanvas(w, h);
   };
 };

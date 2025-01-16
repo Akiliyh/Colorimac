@@ -48,8 +48,7 @@ section div{
     transform: translate(-50%, 0);
     height: fit-content;
     width: fit-content;
-    mix-blend-mode: difference;
-    color:white;
+    color:black;
     cursor: pointer;
 }
 
@@ -59,4 +58,13 @@ section div{
 
 .fa-angle-left {
     left: 30px;
+}
+
+.nav {
+    position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-top: 30px;
 }
