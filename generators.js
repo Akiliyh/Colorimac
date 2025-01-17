@@ -14,7 +14,7 @@ function acidicColor() {
 }
 
 function coldColor() {
-    let hue = randomFloatFromInterval(160, 300);
+    let hue = randomFloatFromInterval(170, 250);
     let saturation = randomFloatFromInterval(20, 90);
     let lightness = randomFloatFromInterval(20, 90);
 
@@ -36,8 +36,8 @@ function warmColor() {
 }
 
 function wetColdColor() {
-    let color1 = warmColor();
-    let color2 = coldColor();
+    let color1 = coldColor();
+    let color2 = { hue: 210, saturation: 89, lightness: 92 };
     let t = 0.3;
 
     let h = color1.hue + t * (color2.hue - color1.hue);
