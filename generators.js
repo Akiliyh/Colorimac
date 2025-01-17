@@ -1,8 +1,7 @@
 function displayColorInfo(color, i) {
-    // console.log("La saturation de la couleur " + i + " est de " + color.saturation);
-    // console.log("La teinte de la couleur " + i + " est de " + color.hue);
-    // console.log("La luminosité de la couleur " + i + " est de " + color.lightness);
-    console.log("La teinte de la couleur " + i + " est de " + color.hue);
+    console.log("La saturation de la couleur " + i + " est de " + color[i].saturation);
+    console.log("La teinte de la couleur " + i + " est de " + color[i].hue);
+    console.log("La luminosité de la couleur " + i + " est de " + color[i].lightness);
 }
 
 function acidicColor() {
@@ -14,7 +13,7 @@ function acidicColor() {
 }
 
 function coldColor() {
-    let hue = randomFloatFromInterval(170, 250);
+    let hue = randomFloatFromInterval(180, 250);
     let saturation = randomFloatFromInterval(20, 90);
     let lightness = randomFloatFromInterval(20, 90);
 
@@ -149,17 +148,33 @@ function displayColorPalette(palette) {
     const colorsContainer = document.querySelector('.colors');
     const children = colorsContainer.children;
 
-    // Loop through each child of .colors
     for (let i = 0; i < children.length; i++) {
         const color = palette[i];
         const child = children[i];
+        /* display color values */
         child.style.backgroundColor = `hsl(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
+
         const span = child.querySelector('span');
         if (span) {
             span.textContent = `HSL(${Math.round(color.hue)}, ${Math.round(color.saturation)}%, ${Math.round(color.lightness)}%)`;
+            /* hover effect */
+            child.addEventListener('mouseover', () => {
+                console.log(color.lightness);
+                /* deal with contrast */
+                if (color.lightness > 50) {
+                    span.style.color = "black";
+                } else {
+                    span.style.color = "white";
+                }
+            });
+            /* reset */
+            child.addEventListener('mouseout', () => {
+                span.style.color = "transparent";
+            });
         }
     }
 }
+
 
 document.querySelectorAll('.fa-angle-left').forEach((faElement) => {
     faElement.addEventListener('click', () => {

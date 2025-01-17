@@ -46,8 +46,7 @@ section div{
 
 .fa {
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, 0);
+    top: calc(50% - 30px);
     height: fit-content;
     width: fit-content;
     color:black;
@@ -130,17 +129,12 @@ section div{
   margin-top: auto;
   margin-bottom: auto;
   color: transparent;
-  mix-blend-mode: difference;
   transition: .5s ease;
 }
 
 .footer .colors div:hover {
     height: 100%;
   width: 200%;
-}
-
-.footer .colors div:hover span {
-  color: white;
 }
 
 .footer .color1 {
