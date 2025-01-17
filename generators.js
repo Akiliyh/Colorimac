@@ -134,7 +134,6 @@ function generatePalette(numColors, colorFunction, contrast) {
         palette.sort((a, b) => a.saturation - b.saturation);
         for (let i = 0; i < palette.length; i++) { // index of the color we are looking at
             for (let j = 0; j < palette.length; j++) { // index of the color we are comparing to
-                console.log("palette[i], palette[j]", palette[i], palette[j])
                 if (i === j) { // we don't want to compare the color to itself
                     continue;
                 }
