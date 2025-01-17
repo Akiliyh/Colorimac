@@ -128,13 +128,18 @@ section div{
   margin-top: auto;
   margin-bottom: auto;
   color: transparent;
-  transition: .5s ease;
+  transition: 0s ease;
+  
 }
 
 .footer .colors div:hover {
-    height: 100%;
+  height: 100%;
   width: 200%;
 }
+
+.footer .colors div:hover span {
+    transition: .2s .2s ease;
+  }
 
 /* Default colors */
 
