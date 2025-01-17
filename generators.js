@@ -17,7 +17,7 @@ function coldColor() {
     let saturation = randomFloatFromInterval(20, 90);
     let lightness = randomFloatFromInterval(10, 90);
 
-    return { hue: hue, saturation: saturation, lightness: lightness };;
+    return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
 function warmColor() {
