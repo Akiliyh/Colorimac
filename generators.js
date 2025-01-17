@@ -101,6 +101,9 @@ function generatePalette(numColors, colorFunction, contrast) {
                 }
                 else if (Math.abs(palette[i].hue - palette[j].hue) < contrast.hue) { // if the hue is too close
                     [palette[j].hue, palette[i].hue] = resolveConflict(palette[j].hue, palette[i].hue, contrast.hue);
+                    if (palette[j].hue < 0) {
+                        palette[j].hue = 0;
+                    }
                 }
             }
         }
@@ -118,6 +121,9 @@ function generatePalette(numColors, colorFunction, contrast) {
                 }
                 else if (Math.abs(palette[i].saturation - palette[j].saturation) < contrast.saturation) { // if the hue is too close
                     [palette[j].saturation, palette[i].saturation] = resolveConflict(palette[j].saturation, palette[i].saturation, contrast.saturation);
+                    if (palette[j].saturation < 0) {
+                        palette[j].saturation = 0;
+                    }
                 }
             }
         }
@@ -133,6 +139,9 @@ function generatePalette(numColors, colorFunction, contrast) {
                 }
                 else if (Math.abs(palette[i].lightness - palette[j].lightness) < contrast.lightness) { // if the hue is too close
                     [palette[j].lightness, palette[i].lightness] = resolveConflict(palette[j].lightness, palette[i].lightness, contrast.lightness);
+                    if (palette[j].lightness < 0) {
+                        palette[j].lightness = 0;
+                    }
                 }
             }
         }
