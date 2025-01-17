@@ -91,9 +91,6 @@ function generatePalette(numColors, colorFunction, contrast) {
     }
 
     // Check for contrast
-    // 1st thing should be to sort the palette by hue, saturation or lightness ok done
-    // 2nd thing would be compare one color to the others
-
     // Look at the hue
     if (contrast.hue > 0) {
         palette.sort((a, b) => a.hue - b.hue);

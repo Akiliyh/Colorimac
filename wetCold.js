@@ -106,9 +106,9 @@ const wetColdSketch = (p) => {
       rotationEnabled = !rotationEnabled;
     }
 
-    if (p.key === 's' || p.key === 'S') {
-      p.saveGif('wetCold', 5);
-    }
+    // if (p.key === 's' || p.key === 'S') {
+    //   p.saveGif('wetCold', 5);
+    // }
 
     /* only restart when in focus */
     if (container.scrollLeft + window.innerWidth > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
