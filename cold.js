@@ -67,7 +67,7 @@ const coldSketch = (p) => {
       let distance = Math.abs((hueValue % 360) - 180);
       distance = Math.min(distance, 360 - distance);
       speed[i] = p.map(distance, 0, 180, 0, 0.01);
-      displayColorInfo(GRIDCOLORS[i], i + 1);
+      displayColorInfo(coldPalette, i + 1);
     }
   }
 
