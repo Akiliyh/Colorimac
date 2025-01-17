@@ -1,8 +1,12 @@
+// logs the colors info
+
 function displayColorInfo(color, i) {
     console.log("La saturation de la couleur " + i + " est de " + color[i].saturation);
     console.log("La teinte de la couleur " + i + " est de " + color[i].hue);
     console.log("La luminosité de la couleur " + i + " est de " + color[i].lightness);
 }
+
+// create acidic color
 
 function acidicColor() {
     let hue = Math.random() * 360;
@@ -12,6 +16,8 @@ function acidicColor() {
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
+// create cold color
+
 function coldColor() {
     let hue = randomFloatFromInterval(180, 250);
     let saturation = randomFloatFromInterval(20, 90);
@@ -19,6 +25,8 @@ function coldColor() {
 
     return { hue: hue, saturation: saturation, lightness: lightness };;
 }
+
+// create warm color
 
 function warmColor() {
     let hue = 0;
@@ -34,6 +42,8 @@ function warmColor() {
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
+// create wet cold color
+
 function wetColdColor() {
     let color1 = coldColor();
     let color2 = { hue: 210, saturation: 89, lightness: 92 };
@@ -46,6 +56,8 @@ function wetColdColor() {
     return { hue: h, saturation: s, lightness: l };
 }
 
+// create mild sugary color
+
 function mildSugaryColor() {
     let hue = Math.random() * 360;
     let saturation = randomFloatFromInterval(60, 80);
@@ -53,6 +65,8 @@ function mildSugaryColor() {
 
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
+
+// create cold silent color
 
 function coldSilentColor() {
     let hue = randomFloatFromInterval(170, 250);
@@ -62,10 +76,13 @@ function coldSilentColor() {
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
+// gets random int from min to max
 
 function randomFloatFromInterval(min, max) { // min and max included 
     return Math.random() * (max - min + 1) + min;
 }
+
+// resolves conflicts between colors in the generate palette
 
 function resolveConflict(color1Parameter, color2Parameter, contrastParameter) {
     // If the colors are too close, we need to increase the contrast
@@ -80,6 +97,8 @@ function resolveConflict(color1Parameter, color2Parameter, contrastParameter) {
     }
     return [color1Parameter, color2Parameter];
 }
+
+// generates palettes based on concepts
 
 function generatePalette(numColors, colorFunction, contrast) {
     let palette = [colorFunction()];
@@ -141,6 +160,8 @@ function generatePalette(numColors, colorFunction, contrast) {
     return palette;
 }
 
+// displays colors in the UI divs
+
 function displayColorPalette(palette) {
     const colorsContainer = document.querySelector('.colors');
     const children = colorsContainer.children;
@@ -153,7 +174,7 @@ function displayColorPalette(palette) {
 
         const span = child.querySelector('span');
         if (span) {
-            span.textContent = `HSL(${Math.round(color.hue)}, ${Math.round(color.saturation)}%, ${Math.round(color.lightness)}%)`;
+            span.textContent = `HSL(${Math.abs(Math.round(color.hue))}, ${Math.round(color.saturation)}%, ${Math.round(color.lightness)}%)`;
             /* hover effect */
             child.addEventListener('mouseover', () => {
                 console.log(color.lightness);
@@ -172,6 +193,7 @@ function displayColorPalette(palette) {
     }
 }
 
+// switch sections
 
 document.querySelectorAll('.fa-angle-left').forEach((faElement) => {
     faElement.addEventListener('click', () => {
@@ -184,6 +206,8 @@ document.querySelectorAll('.fa-angle-left').forEach((faElement) => {
         }
     });
 });
+
+// switch sections
 
 document.querySelectorAll('.fa-angle-right').forEach((faElement) => {
     faElement.addEventListener('click', () => {
@@ -202,6 +226,8 @@ function playAudio() {
     const audio = new Audio('/music/Raindrop_Reverie.mp3');
     audio.play();
 }
+
+// plays audio on interaction
 
 function handleUserInteraction() {
     playAudio();
