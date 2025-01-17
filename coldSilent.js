@@ -16,6 +16,7 @@ const coldSilentSketch = (p) => {
   let curColors = [];
   let GRIDCOLORS = [];
   let coldSilentPalette = [];
+  let contrast = {};
   let coords = [];
   let angle = [];
   let size = [];
@@ -33,11 +34,12 @@ const coldSilentSketch = (p) => {
     depth = [];
     speed = [];
     curColors = [];
+    contrast = { hue: 25, saturation: 0, lightness: 0 };
 
     container.addEventListener('scroll', p.onScroll);
 
     // to change palette style change "coldPalette" & "coldColor"
-    coldSilentPalette = generatePalette(4, coldSilentColor, 25);
+    coldSilentPalette = generatePalette(4, coldSilentColor, contrast);
     // curColors = [...coldSilentPalette];
     for (let i = 0; i < coldSilentPalette.length; i++) {
       curColors.push(p.color(coldSilentPalette[i].hue, coldSilentPalette[i].saturation, coldSilentPalette[i].lightness));

@@ -16,6 +16,7 @@ const mildSugarySketch = (p) => {
   let curColors = [];
   let GRIDCOLORS = [];
   let mildSugaryPalette = [];
+  let contrast = {};
   let coords = [];
   let angle = [];
   let size = [];
@@ -33,11 +34,12 @@ const mildSugarySketch = (p) => {
     depth = [];
     speed = [];
     curColors = [];
+    contrast = { hue: 50, saturation: 0, lightness: 0 };
 
     container.addEventListener('scroll', p.onScroll);
 
     // to change palette style change "coldPalette" & "coldColor"
-    mildSugaryPalette = generatePalette(4, mildSugaryColor, 50);
+    mildSugaryPalette = generatePalette(4, mildSugaryColor, contrast);
     // curColors = [...mildSugaryPalette];
     for (let i = 0; i < mildSugaryPalette.length; i++) {
       curColors.push(p.color(mildSugaryPalette[i].hue, mildSugaryPalette[i].saturation, mildSugaryPalette[i].lightness));
@@ -114,7 +116,7 @@ const mildSugarySketch = (p) => {
   p.onScroll = function () {
     let paletteContainer = document.getElementById('mildSugary-container');
 
-    if (container.scrollLeft + window.innerWidth/2 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+    if (container.scrollLeft + window.innerWidth / 2 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
       displayColorPalette(mildSugaryPalette);
     }
   }

@@ -16,6 +16,7 @@ const coldSketch = (p) => {
   let curColors = [];
   let GRIDCOLORS = [];
   let coldPalette = [];
+  let contrast = {};
   let coords = [];
   let angle = [];
   let size = [];
@@ -33,11 +34,12 @@ const coldSketch = (p) => {
     depth = [];
     speed = [];
     curColors = [];
+    contrast = { hue: 25, saturation: 0, lightness: 0 };
 
     container.addEventListener('scroll', p.onScroll);
 
     // to change palette style change "coldPalette" & "coldColor"
-    coldPalette = generatePalette(4, coldColor, 25);
+    coldPalette = generatePalette(4, coldColor, contrast);
     // curColors = [...coldPalette];
 
     for (let i = 0; i < coldPalette.length; i++) {
@@ -45,7 +47,7 @@ const coldSketch = (p) => {
     };
 
     console.log(coldPalette);
-    if (container.scrollLeft+1 > parent.offsetLeft && container.scrollLeft < parent.offsetLeft + window.innerWidth) {
+    if (container.scrollLeft + 1 > parent.offsetLeft && container.scrollLeft < parent.offsetLeft + window.innerWidth) {
       displayColorPalette(coldPalette);
     }
 
@@ -115,8 +117,8 @@ const coldSketch = (p) => {
 
   p.onScroll = function () {
     let paletteContainer = document.getElementById('cold-container');
-    
-    if (container.scrollLeft+window.innerWidth/2 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+
+    if (container.scrollLeft + window.innerWidth / 2 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
       displayColorPalette(coldPalette);
     }
   }

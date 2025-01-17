@@ -16,6 +16,7 @@ const acidicSketch = (p) => {
   let curColors = [];
   let GRIDCOLORS = [];
   let acidicPalette = [];
+  let contrast = {};
   let coords = [];
   let angle = [];
   let size = [];
@@ -33,18 +34,19 @@ const acidicSketch = (p) => {
     depth = [];
     speed = [];
     curColors = [];
+    contrast = { hue: 50, saturation: 0, lightness: 0 };
 
     container.addEventListener('scroll', p.onScroll);
 
     // to change palette style change "acidicPalette" & "acidicColor"
-    acidicPalette = generatePalette(4, acidicColor, 50);
+    acidicPalette = generatePalette(4, acidicColor, contrast);
     // curColors = [...acidicPalette];
     for (let i = 0; i < acidicPalette.length; i++) {
       curColors.push(p.color(acidicPalette[i].hue, acidicPalette[i].saturation, acidicPalette[i].lightness));
     };
     console.log(acidicPalette);
     // 
-    if (container.scrollLeft+1 > parent.offsetLeft && container.scrollLeft < parent.offsetLeft + window.innerWidth) {
+    if (container.scrollLeft + 1 > parent.offsetLeft && container.scrollLeft < parent.offsetLeft + window.innerWidth) {
       displayColorPalette(acidicPalette);
     }
 
@@ -113,8 +115,8 @@ const acidicSketch = (p) => {
 
   p.onScroll = function () {
     let paletteContainer = document.getElementById('acid-container');
-    
-    if (container.scrollLeft+window.innerWidth/2 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
+
+    if (container.scrollLeft + window.innerWidth / 2 > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
       displayColorPalette(acidicPalette);
     }
   }

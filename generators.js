@@ -1,37 +1,36 @@
 function displayColorInfo(color, i) {
-    // console.log("La saturation de la couleur " + i + " est de " + color[0]);
-    // console.log("La teinte de la couleur " + i + " est de " + color[1]);
-    // console.log("La luminosité de la couleur " + i + " est de " + color[2]);
+    // console.log("La saturation de la couleur " + i + " est de " + color.saturation);
+    // console.log("La teinte de la couleur " + i + " est de " + color.hue);
+    // console.log("La luminosité de la couleur " + i + " est de " + color.lightness);
     console.log("La teinte de la couleur " + i + " est de " + color.hue);
 }
 
 function acidicColor() {
     let hue = Math.random() * 360;
-    let saturation = randomIntFromInterval(90, 100);
-    let lightness = randomIntFromInterval(45, 55);
+    let saturation = randomFloatFromInterval(80, 100);
+    let lightness = randomFloatFromInterval(35, 65);
 
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
 function coldColor() {
-    let hue = Math.random() * (270 - 90) + 90;
-    let saturation = Math.random() * (100 - 50) + 50;
-    let lightness = Math.random() * (70 - 30) + 30;
+    let hue = randomFloatFromInterval(160, 300);
+    let saturation = randomFloatFromInterval(20, 90);
+    let lightness = randomFloatFromInterval(20, 90);
 
     return { hue: hue, saturation: saturation, lightness: lightness };;
 }
 
 function warmColor() {
-
     let hue = 0;
     if (Math.random() < 0.5) {
-        hue = Math.random() * 50;
+        hue = randomFloatFromInterval(0, 50);
     }
     else {
-        hue = Math.random() * (360 - 320) + 320;
+        hue = randomFloatFromInterval(320, 360);
     }
-    let saturation = Math.random() * (100 - 50) + 50;
-    let lightness = Math.random() * (70 - 40) + 40;
+    let saturation = randomFloatFromInterval(50, 100);
+    let lightness = randomFloatFromInterval(20, 90);
 
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
@@ -50,70 +49,99 @@ function wetColdColor() {
 
 function mildSugaryColor() {
     let hue = Math.random() * 360;
-    let saturation = randomIntFromInterval(60, 80);
-    let lightness = randomIntFromInterval(70, 90);
+    let saturation = randomFloatFromInterval(60, 80);
+    let lightness = randomFloatFromInterval(70, 90);
 
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
 function coldSilentColor() {
-    let hue = randomIntFromInterval(170, 250);
-    let saturation = randomIntFromInterval(10, 40);
-    let lightness = randomIntFromInterval(20, 80);
+    let hue = randomFloatFromInterval(170, 250);
+    let saturation = randomFloatFromInterval(10, 40);
+    let lightness = randomFloatFromInterval(20, 80);
 
     return { hue: hue, saturation: saturation, lightness: lightness };
 }
 
 
-function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min);
+function randomFloatFromInterval(min, max) { // min and max included 
+    return Math.random() * (max - min + 1) + min;
 }
 
-function generatePalette(numColors, colorFunction, minHueContrast) {
-    let palette = [];
-    let objectColor = [];
-    let contrast = false;
-    let count = 0;
-    let callColorFunction;
-
-    while (!contrast) {
-        contrast = true;
-        palette = [];
-
-        for (let i = 0; i < numColors; i++) {
-
-            callColorFunction = colorFunction();
-            objectColor = callColorFunction;
-            count = 0;
-
-            for (let k = 0; k < i; k++) {
-                count += 1;
-                // console.log(palette[k]);
-                // console.log(objectColor);
-                // console.log("palette", minHueContrast)
-                if (
-                    (Math.abs(palette[k].hue - objectColor.hue) < minHueContrast) /*||
-                    (Math.abs(palette[k][1] - objectColor[1]) < 45) ||
-                    (Math.abs(palette[k][2] - objectColor[2]) < 30)*/) {
-                    // console.log(Math.abs(palette[k][0] - objectColor[0]) < 20);
-                    // console.log(Math.abs(palette[k][0] - objectColor[0]));
-                    // console.log(Math.abs(palette[k][1] - objectColor[1]) < 45);
-                    // console.log(Math.abs(palette[k][1] - objectColor[1]));
-                    // console.log(Math.abs(palette[k][2] - objectColor[2]) < 30);
-                    // console.log(Math.abs(palette[k][2] - objectColor[2]));
-                    console.log("ah bah le contraste n'est pas bon !");
-
-                    contrast = false;
-                    break;
-                } else {
-                    // console.log("Le contraste est good");
-                }
-            }
-            // console.log(palette);
-
-            palette.push(objectColor);
+function resolveConflict(color1Parameter, color2Parameter, contrastParameter) {
+    // If the colors are too close, we need to increase the contrast
+    if (Math.abs(color1Parameter - color2Parameter) < contrastParameter) {
+        if (color1Parameter > color2Parameter) {
+            color1Parameter += contrastParameter / 2;
+            color2Parameter -= contrastParameter / 2;
+        } else {
+            color2Parameter += contrastParameter / 2;
+            color1Parameter -= contrastParameter / 2;
         }
     }
+    return [color1Parameter, color2Parameter];
+}
+
+function generatePalette(numColors, colorFunction, contrast) {
+    let palette = [colorFunction()];
+
+    // Generate the colors of the palette
+    for (let i = 1; i < numColors; i++) {
+        let objectColor = colorFunction();
+        palette.push(objectColor);
+    }
+
+    // Check for contrast
+    // 1st thing should be to sort the palette by hue, saturation or lightness ok done
+    // 2nd thing would be compare one color to the others
+
+    // Look at the hue
+    if (contrast.hue > 0) {
+        palette.sort((a, b) => a.hue - b.hue);
+        for (let i = 0; i < palette.length; i++) { // index of the color we are looking at
+            for (let j = 0; j < palette.length; j++) { // index of the color we are comparing to
+                if (i === j) { // we don't want to compare the color to itself
+                    continue;
+                }
+                else if (Math.abs(palette[i].hue - palette[j].hue) < contrast.hue) { // if the hue is too close
+                    [palette[j].hue, palette[i].hue] = resolveConflict(palette[j].hue, palette[i].hue, contrast.hue);
+                }
+            }
+        }
+
+    }
+
+    // Look at the saturation
+    if (contrast.saturation > 0) {
+        palette.sort((a, b) => a.saturation - b.saturation);
+        for (let i = 0; i < palette.length; i++) { // index of the color we are looking at
+            for (let j = 0; j < palette.length; j++) { // index of the color we are comparing to
+                console.log("palette[i], palette[j]", palette[i], palette[j])
+                if (i === j) { // we don't want to compare the color to itself
+                    continue;
+                }
+                else if (Math.abs(palette[i].saturation - palette[j].saturation) < contrast.saturation) { // if the hue is too close
+                    [palette[j].saturation, palette[i].saturation] = resolveConflict(palette[j].saturation, palette[i].saturation, contrast.saturation);
+                }
+            }
+        }
+    }
+
+    // Look at the lightness
+    if (contrast.lightness > 0) {
+        palette.sort((a, b) => a.lightness - b.lightness);
+        for (let i = 0; i < palette.length; i++) { // index of the color we are looking at
+            for (let j = 0; j < palette.length; j++) { // index of the color we are comparing to
+                if (i === j) { // we don't want to compare the color to itself
+                    continue;
+                }
+                else if (Math.abs(palette[i].lightness - palette[j].lightness) < contrast.lightness) { // if the hue is too close
+                    [palette[j].lightness, palette[i].lightness] = resolveConflict(palette[j].lightness, palette[i].lightness, contrast.lightness);
+                }
+            }
+        }
+    }
+
     return palette;
 }
 
