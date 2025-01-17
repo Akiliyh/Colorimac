@@ -34,7 +34,7 @@ const coldSketch = (p) => {
     depth = [];
     speed = [];
     curColors = [];
-    contrast = { hue: 25, saturation: 0, lightness: 0 };
+    contrast = { hue: 25, saturation: 0, lightness: 10 };
 
     container.addEventListener('scroll', p.onScroll);
 
@@ -107,6 +107,11 @@ const coldSketch = (p) => {
     if (p.key === " ") {
       rotationEnabled = !rotationEnabled;
     }
+
+    if (p.key === 's' || p.key === 'S') {
+      p.saveGif('cold', 5);
+    }
+
     /* only restart when in focus */
     if (container.scrollLeft + window.innerWidth > paletteContainer.offsetLeft && container.scrollLeft < paletteContainer.offsetLeft + window.innerWidth) {
       if (p.key === "r" || p.key === "R") {

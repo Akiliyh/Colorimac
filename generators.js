@@ -15,7 +15,7 @@ function acidicColor() {
 function coldColor() {
     let hue = randomFloatFromInterval(180, 250);
     let saturation = randomFloatFromInterval(20, 90);
-    let lightness = randomFloatFromInterval(20, 90);
+    let lightness = randomFloatFromInterval(10, 90);
 
     return { hue: hue, saturation: saturation, lightness: lightness };;
 }
